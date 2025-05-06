@@ -7,9 +7,10 @@
 #include <stdio.h>
 #include <math.h>
 
-int  gNumVertices  = 0;    // Number of 3D vertices.
-int  gNumTriangles = 0;    // Number of triangles.
-int *gIndexBuffer  = NULL; // Vertex indices for the triangles.
+int    gNumVertices  = 0;    // Number of 3D vertices.
+int    gNumTriangles = 0;    // Number of triangles.
+int   *gIndexBuffer  = NULL; // Vertex indices for the triangles.
+float *gVertexBuffer = NULL;
 
 void create_scene()
 {
@@ -21,10 +22,8 @@ void create_scene()
 
 	gNumVertices  = (height - 2) * width + 2;
 	gNumTriangles = (height - 2) * (width - 1) * 2;
-
-	// TODO: Allocate an array for gNumVertices vertices.
-
-	gIndexBuffer = new int[3 * gNumTriangles];
+	gVertexBuffer = new float[3 * gNumVertices];
+	gIndexBuffer  = new int[3 * gNumTriangles];
 
 	t = 0;
 	for (int j = 1; j < height - 1; ++j)
@@ -38,18 +37,23 @@ void create_scene()
 			float y = cosf(theta);
 			float z = -sinf(theta) * sinf(phi);
 
+			gVertexBuffer[3 * t] = x;
+			gVertexBuffer[3 * t + 1] = y;
+			gVertexBuffer[3 * t + 2] = z;
 			// TODO: Set vertex t in the vertex array to {x, y, z}.
 
 			t++;
 		}
 	}
 
-	// TODO: Set vertex t in the vertex array to {0, 1, 0}.
-
+	gVertexBuffer[3 * t]     = 0;
+	gVertexBuffer[3 * t + 1] = 1;
+	gVertexBuffer[3 * t + 2] = 0;
 	t++;
 
-	// TODO: Set vertex t in the vertex array to {0, -1, 0}.
-
+	gVertexBuffer[3 * t]     = 0;
+	gVertexBuffer[3 * t + 1] = -1;
+	gVertexBuffer[3 * t + 2] = 0;
 	t++;
 
 	t = 0;
