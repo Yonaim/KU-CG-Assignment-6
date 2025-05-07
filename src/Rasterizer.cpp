@@ -1,6 +1,7 @@
 #include "Rasterizer.hpp"
+#include "settings.hpp"
 
-Rasterizer::Rasterizer(int w, int h) : frameBuffer(w, h)
+Rasterizer::Rasterizer(int w, int h) : framebuffer(w, h)
 {
 }
 
@@ -32,9 +33,9 @@ void Rasterizer::transform_vertices(const Vertex &v0, const Vertex &v1,
 	out2.position = out2.position / out2.position.w;
 
 	// NDC -> screen
-	out0.screen_pos = ndc_to_screen(out0.position);
-	out1.screen_pos = ndc_to_screen(out1.position);
-	out2.screen_pos = ndc_to_screen(out2.position);
+	out0.screen_pos = ndc_to_screen(out0.position, SCR_WIDTH, SCR_HEIGHT);
+	out1.screen_pos = ndc_to_screen(out1.position, SCR_WIDTH, SCR_HEIGHT);
+	out2.screen_pos = ndc_to_screen(out2.position, SCR_WIDTH, SCR_HEIGHT);
 }
 
 void Rasterizer::rasterize_triangle(const VertexOut &v0, const VertexOut &v1,
