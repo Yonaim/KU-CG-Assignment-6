@@ -99,10 +99,10 @@ glm::mat4 scale(const glm::vec3 &scaling)
 
 // view matrix
 glm::mat4 view(const glm::vec3 &eye, const glm::vec3 &center,
-			   const glm::vec3 &up)
+			   const glm::vec3 &world_up)
 {
 	glm::vec3 forward = glm::normalize(center - eye);
-	glm::vec3 right   = glm::normalize(glm::cross(up, forward));
+	glm::vec3 right   = glm::normalize(glm::cross(world_up, forward));
 	glm::vec3 up      = glm::cross(forward, right);
 
 	glm::mat4 view = glm::mat4(1.0f);
