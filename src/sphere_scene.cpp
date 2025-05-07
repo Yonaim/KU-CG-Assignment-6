@@ -12,7 +12,7 @@ int    gNumTriangles = 0;    // Number of triangles.
 int   *gIndexBuffer  = NULL; // Vertex indices for the triangles.
 float *gVertexBuffer = NULL;
 
-void create_scene()
+void create_unit_sphere()
 {
 	int width  = 32;
 	int height = 16;
@@ -37,10 +37,9 @@ void create_scene()
 			float y = cosf(theta);
 			float z = -sinf(theta) * sinf(phi);
 
-			gVertexBuffer[3 * t] = x;
+			gVertexBuffer[3 * t]     = x;
 			gVertexBuffer[3 * t + 1] = y;
 			gVertexBuffer[3 * t + 2] = z;
-			// TODO: Set vertex t in the vertex array to {x, y, z}.
 
 			t++;
 		}
