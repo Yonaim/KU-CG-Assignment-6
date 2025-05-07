@@ -2,7 +2,7 @@
 #define RASTERIZER_HPP
 
 #include <vector>
-#include <glm.hpp>
+#include <glm/glm.hpp>
 #include "FrameBuffer.hpp"
 #include "VertexShader.hpp"
 #include "FragmentShader.hpp"
@@ -25,12 +25,11 @@ class Rasterizer
 	void draw_triangle(const Vertex &v0, const Vertex &v1, const Vertex &v2);
 
   private:
-	void      rasterize_triangle(const VertexOut &v0, const VertexOut &v1,
-								 const VertexOut &v2);
-	void      transform_vertices(const Vertex &v0, const Vertex &v1,
-								 const Vertex &v2, VertexOut &out0, VertexOut &out1,
-								 VertexOut &out2);
+	void rasterize_triangle(const VertexOut &v0, const VertexOut &v1,
+							const VertexOut &v2);
+	void transform_vertices(const Vertex &v0, const Vertex &v1,
+							const Vertex &v2, VertexOut &out0, VertexOut &out1,
+							VertexOut &out2);
 };
-
 
 #endif

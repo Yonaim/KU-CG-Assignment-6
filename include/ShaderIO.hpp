@@ -1,7 +1,7 @@
 #ifndef SHADERIO_HPP
 #define SHADERIO_HPP
 
-#include <glm.hpp>
+#include <glm/glm.hpp>
 
 struct Vertex
 {

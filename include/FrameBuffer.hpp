@@ -1,7 +1,7 @@
 #ifndef FRAMEBUFFER_HPP
 #define FRAMEBUFFER_HPP
 
-#include <glm.hpp>
+#include <glm/glm.hpp>
 
 class Framebuffer
 {

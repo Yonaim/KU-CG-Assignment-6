@@ -1,7 +1,7 @@
 #ifndef OBJECT_HPP
 #define OBJECT_HPP
 
-#include <glm.hpp>
+#include <glm/glm.hpp>
 #include "Mesh.hpp"
 #include "math.hpp"
 
