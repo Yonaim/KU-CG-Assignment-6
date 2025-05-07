@@ -8,6 +8,11 @@ Renderer::~Renderer()
 {
 }
 
+void Renderer::setOuput(int width, int height)
+{
+	this->output.resize(width * height * 3);
+}
+
 void Renderer::render(Rasterizer &rasterizer)
 {
 	rasterizer.framebuffer.clear_color(glm::vec3(0.0f));
