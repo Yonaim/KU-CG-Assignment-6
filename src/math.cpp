@@ -61,10 +61,10 @@ glm::mat4 scale(const glm::vec3 &scaling)
 	return m;
 }
 
-glm::mat4 view(const glm::vec3 &eye, const glm::vec3 &center,
+glm::mat4 view(const glm::vec3 &eye, const glm::vec3 &lookat,
 			   const glm::vec3 &world_up)
 {
-	glm::vec3 forward = glm::normalize(center - eye);
+	glm::vec3 forward = glm::normalize(lookat - eye);
 	glm::vec3 right   = glm::normalize(glm::cross(world_up, forward));
 	glm::vec3 up      = glm::cross(forward, right);
 
@@ -78,22 +78,27 @@ glm::mat4 view(const glm::vec3 &eye, const glm::vec3 &center,
 	view[2][0]     = -forward.x;
 	view[2][1]     = -forward.y;
 	view[2][2]     = -forward.z;
-	view[3][0]     = -glm::dot(right, eye);
-	view[3][1]     = -glm::dot(up, eye);
-	view[3][2]     = glm::dot(forward, eye);
+	view[3][0]     = glm::dot(right, eye);
+	view[3][1]     = glm::dot(up, eye);
+	view[3][2]     = -glm::dot(forward, eye);
 
 	return view;
 }
 
-glm::mat4 perspective(float fovy, float aspect, float near, float far)
+glm::mat4 perspective(float l, float r, float b, float t, float n, float f)
 {
-	float     f = 1.0f / tan(fovy / 2.0f);
 	glm::mat4 m(0.0f);
-	m[0][0] = f / aspect;
-	m[1][1] = f;
-	m[2][2] = (far + near) / (near - far);
-	m[2][3] = (2 * far * near) / (near - far);
-	m[3][2] = -1.0f;
+
+	m[0][0] = 2.0f * n / (r - l);
+	m[1][1] = 2.0f * n / (t - b);
+
+	m[2][0] = (r + l) / (r - l);
+	m[2][1] = (t + b) / (t - b);
+	m[2][2] = (f + n) / (f - n);       
+	m[2][3] = (2.0f * f * n) / (f - n);
+
+	m[3][2] = 1.0f;
+
 	return m;
 }
 

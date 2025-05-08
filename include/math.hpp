@@ -21,9 +21,9 @@ glm::mat4 identity(void);
 glm::mat4 translate(const glm::vec3 &translation);
 glm::mat4 rotate(const glm::vec3 angle);
 glm::mat4 scale(const glm::vec3 &scaling);
-glm::mat4 view(const glm::vec3 &eye, const glm::vec3 &center,
+glm::mat4 view(const glm::vec3 &eye, const glm::vec3 &lookat,
 			   const glm::vec3 &world_up);
-glm::mat4 perspective(float fovy, float aspect, float near, float far);
+glm::mat4 perspective(float l, float r, float b, float t, float n, float f);
 glm::mat4 viewport(int nx, int ny);
 } // namespace math
 
