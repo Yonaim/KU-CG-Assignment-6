@@ -1,10 +1,12 @@
 # Overview
 
-This project is a custom-built rasterizer written in C++, without relying on any high-level graphics APIs.
+This project is a simple rasterizer written in C++, without relying on any high-level graphics APIs.
 
 OpenGL is used solely for creating the window and displaying the final framebuffer — all rendering computations are performed on the CPU.
 
 While the project uses the GLM library for basic math operations, such as vectors and matrices, all graphics-specific transformations (e.g., projection, viewport, rotation) are implemented manually from scratch, without using GLM's built-in graphics utilities.
+
+All objects in the scene are represented as triangle meshes, which are transformed and rasterized through a custom CPU-based pipeline.
 
 # How to Compilation & Run
 
