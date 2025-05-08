@@ -74,7 +74,7 @@ GLFWwindow *init_glfw()
 
 	// Create window and use
 	GLFWwindow *window = glfwCreateWindow(
-		SCR_WIDTH, SCR_HEIGHT, "Ray-Tracer (Assignment 1)", NULL, NULL);
+		SCR_WIDTH, SCR_HEIGHT, "Rasterizer (Assignment 5)", NULL, NULL);
 
 	if (!window)
 	{
