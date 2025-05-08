@@ -16,9 +16,13 @@ class Camera
   public:
 	Camera();
 	~Camera();
-	void setEye(glm::vec3 eye);
-	void setDirection(glm::vec3 right, glm::vec3 up, glm::vec3 forward);
-	void setDistance(float distance);
+	void      setEye(glm::vec3 eye);
+	void      setDirection(glm::vec3 right, glm::vec3 up, glm::vec3 forward);
+	glm::vec3 getEye() const;
+	glm::vec3 getRight() const;
+	glm::vec3 getUp() const;
+	glm::vec3 getForward() const;
+	glm::mat4 getViewMatrix() const;
 };
 
 #endif
