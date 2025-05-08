@@ -20,7 +20,14 @@ static void init_camera(Camera &camera)
 	camera.setEye(glm::vec3(0, 0, 0));
 	camera.setDirection(glm::vec3(1, 0, 0), glm::vec3(0, 1, 0),
 						glm::vec3(0, 0, 1));
-	camera.setDistance(0.1f);
+
+	/*
+	Use a perspective projection transform with l = −0.1, r = 0.1, b = −0.1, t
+	= 0.1, n = −0.1, f = −1000.
+	*/
+	camera.image_plane.setExtent(-0.1, 0.1, 0.1, -0.1);
+	camera.image_plane.setDistance(0.1);
+	camera.image_plane.setDepthRange(-0.1, -1000);
 }
 
 static void init_objects(Scene &scene)
