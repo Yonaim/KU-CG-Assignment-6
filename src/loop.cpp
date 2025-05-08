@@ -25,7 +25,6 @@ void renderFrameLoop(Renderer &renderer, Rasterizer &rasterizer,
 {
 	bool needRecompute = true;
 
-	srand(time(NULL));
 	while (!glfwWindowShouldClose(window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT);
