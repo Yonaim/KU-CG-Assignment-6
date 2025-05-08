@@ -22,7 +22,7 @@ class Renderer
 
 	Renderer();
 	~Renderer();
-	void setOuput(int width, int height);
+	void resizeOutput(int width, int height);
 	void render(Rasterizer &rasterizer);
 };
 
