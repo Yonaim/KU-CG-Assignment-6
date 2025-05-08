@@ -91,13 +91,11 @@ glm::mat4 perspective(float l, float r, float b, float t, float n, float f)
 
 	m[0][0] = 2.0f * n / (r - l);
 	m[1][1] = 2.0f * n / (t - b);
-
-	m[2][0] = (r + l) / (r - l);
-	m[2][1] = (t + b) / (t - b);
-	m[2][2] = (f + n) / (f - n);       
-	m[2][3] = (2.0f * f * n) / (f - n);
-
-	m[3][2] = 1.0f;
+	m[2][2] = (f + n) / (n - f);
+	m[2][3] = 1.0f; // perspective divide
+	m[3][2] = 2.0f * f * n / (f - n);
+	m[2][0] = (l + r) / (l - r);
+	m[2][1] = (b + t) / (b - t);
 
 	return m;
 }
