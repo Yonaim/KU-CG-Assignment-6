@@ -8,7 +8,7 @@ Renderer::~Renderer()
 {
 }
 
-void Renderer::setOuput(int width, int height)
+void Renderer::resizeOutput(int width, int height)
 {
 	this->output.resize(width * height * 3);
 }

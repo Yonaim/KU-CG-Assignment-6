@@ -23,7 +23,7 @@ int main()
 	window = init_glfw();
 	if (window == NULL)
 		return (1);
-	renderer.setOuput(SCR_WIDTH, SCR_HEIGHT);
+	renderer.resizeOutput(SCR_WIDTH, SCR_HEIGHT);
 	rasterizer.vertex_shader   = &vs;
 	rasterizer.fragment_shader = (FragmentShader *)&fs;
 
