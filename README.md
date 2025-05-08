@@ -27,4 +27,4 @@ While the project uses the GLM library for basic math operations, such as vector
 
 # Result Screenshots
 
-![output](screenshot.png)
+![output](Screenshot.png)
