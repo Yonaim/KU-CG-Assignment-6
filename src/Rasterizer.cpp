@@ -1,5 +1,6 @@
 #include "Rasterizer.hpp"
 #include "settings.hpp"
+#include "math.hpp"
 
 Rasterizer::Rasterizer(int w, int h) : framebuffer(w, h)
 {
@@ -10,12 +11,6 @@ static float edge_test(const glm::vec2 &a, const glm::vec2 &b,
 					   const glm::vec2 &c)
 {
 	return (c.x - a.x) * (b.y - a.y) - (c.y - a.y) * (b.x - a.x);
-}
-
-// Converts NDC [-1, 1] to screen space [0~width, 0~height]
-static glm::vec2 ndc_to_screen(const glm::vec4 &p, int width, int height)
-{
-	return glm::vec2((p.x * 0.5f + 0.5f) * width, (p.y * 0.5f + 0.5f) * height);
 }
 
 void Rasterizer::transform_vertices(const Vertex &v0, const Vertex &v1,
@@ -33,9 +28,15 @@ void Rasterizer::transform_vertices(const Vertex &v0, const Vertex &v1,
 	out2.position = out2.position / out2.position.w;
 
 	// NDC -> screen
-	out0.screen_pos = ndc_to_screen(out0.position, SCR_WIDTH, SCR_HEIGHT);
-	out1.screen_pos = ndc_to_screen(out1.position, SCR_WIDTH, SCR_HEIGHT);
-	out2.screen_pos = ndc_to_screen(out2.position, SCR_WIDTH, SCR_HEIGHT);
+	glm::mat4 viewport = math::viewport(SCR_WIDTH, SCR_HEIGHT);
+	glm::vec4 sp0 = viewport * out0.position;
+	glm::vec4 sp1 = viewport * out1.position;
+	glm::vec4 sp2 = viewport * out2.position;
+
+	// discard z/w, keep screen-space xy only
+	out0.screen_pos = glm::vec2(sp0);
+	out1.screen_pos = glm::vec2(sp1);
+	out2.screen_pos = glm::vec2(sp2);
 }
 
 void Rasterizer::rasterize_triangle(const VertexOut &v0, const VertexOut &v1,
