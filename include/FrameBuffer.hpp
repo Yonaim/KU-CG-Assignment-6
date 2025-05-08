@@ -2,6 +2,7 @@
 #define FRAMEBUFFER_HPP
 
 #include <glm/glm.hpp>
+#include <vector>
 
 class Framebuffer
 {

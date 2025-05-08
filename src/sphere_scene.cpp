@@ -4,8 +4,9 @@
 //
 //
 
+#define _USE_MATH_DEFINES
 #include <stdio.h>
-#include <math.h>
+#include <cmath>
 
 int    gNumVertices  = 0;    // Number of 3D vertices.
 int    gNumTriangles = 0;    // Number of triangles.

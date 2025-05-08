@@ -1,5 +1,5 @@
 #include "Camera.hpp"
-#include "math.hpp"
+#include "matrix.hpp"
 
 Camera::Camera()
 	: eye(0.0f), right(1.0f, 0.0f, 0.0f), up(0.0f, 1.0f, 0.0f),
@@ -44,5 +44,5 @@ glm::vec3 Camera::getForward() const
 glm::mat4 Camera::getViewMatrix() const
 {
 	glm::vec3 lookat = eye + forward;
-	return (math::view(eye, lookat, up));
+	return (matrix::view(eye, lookat, up));
 }

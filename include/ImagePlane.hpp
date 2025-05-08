@@ -9,7 +9,7 @@ class ImagePlane
 	float left, right;
 	float top, bottom;
 	float distance;
-	float near, far;
+	float z_near, z_far;
 
 	ImagePlane()  = default;
 	~ImagePlane() = default;

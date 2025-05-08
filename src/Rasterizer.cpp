@@ -1,6 +1,6 @@
 #include "Rasterizer.hpp"
 #include "settings.hpp"
-#include "math.hpp"
+#include "matrix.hpp"
 
 Rasterizer::Rasterizer(int w, int h) : framebuffer(w, h)
 {
@@ -28,7 +28,7 @@ void Rasterizer::transform_vertices(const Vertex &v0, const Vertex &v1,
 	out2.position = out2.position / out2.position.w;
 
 	// NDC -> screen
-	glm::mat4 viewport = math::viewport(SCR_WIDTH, SCR_HEIGHT);
+	glm::mat4 viewport = matrix::viewport(SCR_WIDTH, SCR_HEIGHT);
 	glm::vec4 sp0 = viewport * out0.position;
 	glm::vec4 sp1 = viewport * out1.position;
 	glm::vec4 sp2 = viewport * out2.position;

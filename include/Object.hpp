@@ -3,7 +3,7 @@
 
 #include <glm/glm.hpp>
 #include "Mesh.hpp"
-#include "math.hpp"
+#include "matrix.hpp"
 
 class Object
 {
@@ -17,9 +17,9 @@ class Object
 
 	glm::mat4 getModelMatrix() const
 	{
-		glm::mat4 t = math::translate(position);
-		glm::mat4 r = math::rotate(rotation);
-		glm::mat4 s = math::scale(scale);
+		glm::mat4 t = matrix::translate(position);
+		glm::mat4 r = matrix::rotate(rotation);
+		glm::mat4 s = matrix::scale(scale);
 
 		return t * r * s;
 	}

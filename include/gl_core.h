@@ -14,8 +14,8 @@
 
 #ifdef __APPLE__
 #else
-#include <GL/GL.h>
-#include <GL/freeglut.h>
+//#include <GL/GL.h>
+//#include <GL/freeglut.h>
 #endif
 
 #define GLFW_INCLUDE_GLU
@@ -27,6 +27,5 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/constants.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/string_cast.hpp>
 
 #endif

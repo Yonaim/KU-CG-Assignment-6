@@ -1,5 +1,5 @@
-#include <GLFW/glfw3.h>
 #include "gl_core.h"
+#include <GLFW/glfw3.h>
 #include "Scene.hpp"
 #include "settings.hpp"
 

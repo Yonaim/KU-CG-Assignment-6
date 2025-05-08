@@ -1,5 +1,5 @@
 #include "ImagePlane.hpp"
-#include "math.hpp"
+#include "matrix.hpp"
 
 void ImagePlane::setExtent(float l, float r, float t, float b)
 {
@@ -16,11 +16,11 @@ void ImagePlane::setDistance(float d)
 
 void ImagePlane::setDepthRange(float n, float f)
 {
-	near = n;
-	far  = f;
+	z_near = n;
+	z_far  = f;
 }
 
 glm::mat4 ImagePlane::getPerspectiveMatrix() const
 {
-	return math::perspective(left, right, bottom, top, near, far);
+	return matrix::perspective(left, right, bottom, top, z_near, z_far);
 }
