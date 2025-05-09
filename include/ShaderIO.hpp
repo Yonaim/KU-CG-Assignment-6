@@ -3,7 +3,6 @@
 
 #include <glm/glm.hpp>
 
-#define SHADING_MODE_GOURAUD 0
 
 struct Vertex
 {

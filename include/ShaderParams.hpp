@@ -20,9 +20,9 @@ struct Light
 
 struct GlobalLighting
 {
-	Light light;
-	float ambient_intensity;
-	float gamma;
+	std::vector<Light> lights;
+	float              ambient_intensity;
+	float              gamma;
 };
 
 #endif
