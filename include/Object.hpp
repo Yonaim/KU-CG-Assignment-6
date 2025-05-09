@@ -4,11 +4,13 @@
 #include <glm/glm.hpp>
 #include "Mesh.hpp"
 #include "matrix.hpp"
+#include "ShaderParams.hpp"
 
 class Object
 {
   public:
 	Mesh     *mesh;
+	Material *material;
 	glm::vec3 position;
 	glm::vec3 rotation; // Euler angles
 	glm::vec3 scale;
