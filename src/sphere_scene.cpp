@@ -12,6 +12,7 @@ int    gNumVertices  = 0;    // Number of 3D vertices.
 int    gNumTriangles = 0;    // Number of triangles.
 int   *gIndexBuffer  = NULL; // Vertex indices for the triangles.
 float *gVertexBuffer = NULL;
+float *gNormalBuffer = NULL;
 
 void create_unit_sphere()
 {
@@ -24,6 +25,7 @@ void create_unit_sphere()
 	gNumVertices  = (height - 2) * width + 2;
 	gNumTriangles = (height - 2) * (width - 1) * 2;
 	gVertexBuffer = new float[3 * gNumVertices];
+	gNormalBuffer = new float[3 * gNumVertices];
 	gIndexBuffer  = new int[3 * gNumTriangles];
 
 	t = 0;
@@ -41,6 +43,10 @@ void create_unit_sphere()
 			gVertexBuffer[3 * t]     = x;
 			gVertexBuffer[3 * t + 1] = y;
 			gVertexBuffer[3 * t + 2] = z;
+
+			gNormalBuffer[3 * t]     = x;
+			gNormalBuffer[3 * t + 1] = y;
+			gNormalBuffer[3 * t + 2] = z;
 
 			t++;
 		}

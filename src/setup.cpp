@@ -8,8 +8,10 @@ extern int    gNumVertices;  // Number of 3D vertices.
 extern int    gNumTriangles; // Number of triangles.
 extern int   *gIndexBuffer;  // Vertex indices for the triangles.
 extern float *gVertexBuffer;
+extern float *gNormalBuffer;
 
-void        create_unit_sphere();
+void create_unit_sphere();
+
 static void init_materials(Scene &scene)
 {
 	/*
@@ -69,8 +71,8 @@ static void init_camera(Camera &camera)
 static void init_objects(Scene &scene)
 {
 	Mesh *unit_sphere = new Mesh();
-	unit_sphere->setData(gVertexBuffer, gNumVertices, gIndexBuffer,
-						 gNumTriangles * 3);
+	unit_sphere->setData(gVertexBuffer, gNormalBuffer, gNumVertices,
+						 gIndexBuffer, gNumTriangles * 3);
 	/*
 	Use a modeling transform to transform the unit sphere to a sphere
 	centered at (0, 0, −7) with a radius of 2

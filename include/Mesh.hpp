@@ -7,8 +7,9 @@
 class Mesh
 {
   public:
-	float *vertexBuffer = nullptr; // vertex: 3 floats per vertex
-	int   *indexBuffer  = nullptr; // indices: 3 per triangle
+	float *vertexBuffer = nullptr; // 3 floats per vertex
+	float *normalBuffer = nullptr; // 3 floats per vertex normal
+	int   *indexBuffer  = nullptr; // 3 indices per triangles
 	int    n_vertices   = 0;
 	int    n_indices    = 0;
 	int    n_triangles  = 0;
@@ -16,8 +17,9 @@ class Mesh
 	Mesh();
 	~Mesh();
 
-	void setData(float *vertices, int numVertices, int *indices,
+	void setData(float *vertices, float *normals, int numVertices, int *indices,
 				 int numIndices);
+
 	std::array<Vertex, 3> get_nth_triangle(int idx) const;
 };
 

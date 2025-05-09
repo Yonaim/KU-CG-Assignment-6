@@ -8,14 +8,15 @@ Mesh::~Mesh()
 	delete[] indexBuffer;
 }
 
-void Mesh::setData(float *vertices, int numVertices, int *indices,
-				   int numIndices)
+void Mesh::setData(float *vertices, float *normals, int numVertices,
+				   int *indices, int numIndices)
 {
-	vertexBuffer = vertices;
-	indexBuffer  = indices;
-	n_vertices   = numVertices;
-	n_indices    = numIndices;
-	n_triangles  = numIndices / 3;
+	this->vertexBuffer = vertices;
+	this->normalBuffer = normals;
+	this->n_vertices   = numVertices;
+	this->indexBuffer  = indices;
+	this->n_indices    = numIndices;
+	this->n_triangles  = numIndices / 3;
 }
 
 std::array<Vertex, 3> Mesh::get_nth_triangle(int idx) const
