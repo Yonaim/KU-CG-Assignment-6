@@ -71,7 +71,7 @@ void Rasterizer::rasterize_triangle(const VertexOut &v0, const VertexOut &v1,
 					framebuffer.depth_buffer[index] = depth;
 
 					FragmentIn frag;
-					frag.world_pos = w0 * v0.world_pos + w1 * v1.world_pos
+					frag.position = w0 * v0.world_pos + w1 * v1.world_pos
 									 + w2 * v2.world_pos;
 					frag.normal = glm::normalize(w0 * v0.normal + w1 * v1.normal
 												 + w2 * v2.normal);
