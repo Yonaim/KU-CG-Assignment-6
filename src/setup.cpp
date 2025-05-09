@@ -2,13 +2,49 @@
 #include <GLFW/glfw3.h>
 #include "Scene.hpp"
 #include "settings.hpp"
+#include "ShaderGlobalState.hpp"
 
 extern int    gNumVertices;  // Number of 3D vertices.
 extern int    gNumTriangles; // Number of triangles.
 extern int   *gIndexBuffer;  // Vertex indices for the triangles.
 extern float *gVertexBuffer;
 
-void create_unit_sphere();
+void        create_unit_sphere();
+static void init_materials(Scene &scene)
+{
+	/*
+	- ka = (0, 1, 0), kd = (0, 0.5, 0), ks = (0.5, 0.5, 0.5), p = 32.
+	*/
+	Material green_material;
+	green_material.ka        = glm::vec3(0.0f, 1.0f, 0.0f); // ambient
+	green_material.kd        = glm::vec3(0.0f, 0.5f, 0.0f); // diffuse
+	green_material.ks        = glm::vec3(0.5f, 0.5f, 0.5f); // specular
+	green_material.shininess = 32.0f;
+
+	scene.materials["green"] = green_material;
+}
+
+static void init_lighting(Scene &scene)
+{
+	GlobalLighting *lighting = new GlobalLighting();
+
+	/*
+	– Use an ambient light intensity of Ia = 0.2.
+	– Assume a single point light source at (−4, 4, −3), emitting white light
+		with unit intensity and no falloff.
+	– Apply gamma correction with γ = 2.2 in each case.
+	*/
+	Light point_light;
+	point_light.position  = glm::vec3(-4.0f, 4.0f, -3.0f);
+	point_light.color     = glm::vec3(1.0f); // white
+	point_light.intensity = 1.0f;
+
+	lighting->lights.push_back(point_light);
+	lighting->ambient_intensity = 0.2f;
+	lighting->gamma             = 2.2f;
+
+	scene.lighting = lighting;
+}
 
 static void init_camera(Camera &camera)
 {
@@ -51,7 +87,10 @@ void init_scene(Scene &scene)
 {
 	create_unit_sphere();
 	init_camera(scene.camera);
+	init_materials(scene);
+	init_lighting(scene);
 	init_objects(scene);
+	scene.objects[0].material = &scene.materials["green"];
 }
 
 GLFWwindow *init_glfw()
