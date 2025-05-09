@@ -1,6 +1,8 @@
 #include "Rasterizer.hpp"
 #include "settings.hpp"
 #include "matrix.hpp"
+#include "ShaderGlobalState.hpp"
+#include "FragmentShaderFlat.hpp"
 
 Rasterizer::Rasterizer(int w, int h) : framebuffer(w, h)
 {
@@ -29,9 +31,9 @@ void Rasterizer::transform_vertices(const Vertex &v0, const Vertex &v1,
 
 	// NDC -> screen
 	glm::mat4 viewport = matrix::viewport(SCR_WIDTH, SCR_HEIGHT);
-	glm::vec4 sp0 = viewport * out0.position;
-	glm::vec4 sp1 = viewport * out1.position;
-	glm::vec4 sp2 = viewport * out2.position;
+	glm::vec4 sp0      = viewport * out0.position;
+	glm::vec4 sp1      = viewport * out1.position;
+	glm::vec4 sp2      = viewport * out2.position;
 
 	// discard z/w, keep screen-space xy only
 	out0.screen_pos = glm::vec2(sp0);
@@ -72,7 +74,7 @@ void Rasterizer::rasterize_triangle(const VertexOut &v0, const VertexOut &v1,
 
 					FragmentIn frag;
 					frag.position = w0 * v0.world_pos + w1 * v1.world_pos
-									 + w2 * v2.world_pos;
+									+ w2 * v2.world_pos;
 					frag.normal = glm::normalize(w0 * v0.normal + w1 * v1.normal
 												 + w2 * v2.normal);
 
@@ -84,11 +86,20 @@ void Rasterizer::rasterize_triangle(const VertexOut &v0, const VertexOut &v1,
 	}
 }
 
-void Rasterizer::draw_triangle(const Vertex &v0, const Vertex &v1,
+void Rasterizer::draw_triangle(const ShaderGlobalState &global_state,
+							   const Vertex &v0, const Vertex &v1,
 							   const Vertex &v2)
 {
 	VertexOut out0, out1, out2;
 
 	transform_vertices(v0, v1, v2, out0, out1, out2);
+
+	if (global_state.shading_mode == ShadingMode::Flat)
+	{
+		auto *fs_flat
+			= dynamic_cast<FragmentShaderFlat *>(this->fragment_shader);
+		set_flat_info(fs_flat, out0, out1, out2);
+	}
+
 	rasterize_triangle(out0, out1, out2);
 }

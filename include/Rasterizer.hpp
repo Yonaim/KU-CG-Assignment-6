@@ -22,7 +22,8 @@ class Rasterizer
 
 	Rasterizer(int w, int h);
 
-	void draw_triangle(const Vertex &v0, const Vertex &v1, const Vertex &v2);
+	void draw_triangle(const ShaderGlobalState &global_state, const Vertex &v0,
+					   const Vertex &v1, const Vertex &v2);
 
   private:
 	void rasterize_triangle(const VertexOut &v0, const VertexOut &v1,
