@@ -20,6 +20,13 @@ static void flipImageVertically(std::vector<unsigned char> &image, int width,
 	}
 }
 
+static void updateGlobalState(Renderer &renderer, const glm::vec3 &camera_pos,
+							  const GlobalLighting *lighting)
+{
+	renderer.setViewPosition(camera_pos);
+	renderer.setLighting(lighting);
+}
+
 void renderFrameLoop(Renderer &renderer, Rasterizer &rasterizer,
 					 GLFWwindow *window)
 {
@@ -34,6 +41,9 @@ void renderFrameLoop(Renderer &renderer, Rasterizer &rasterizer,
 
 		if (needRecompute)
 		{
+			updateGlobalState(renderer, renderer.scene.camera.getEye(),
+							  renderer.scene.lighting);
+							  
 			std::cout << "Starting rasterization..." << std::endl;
 
 			renderer.render(rasterizer);
