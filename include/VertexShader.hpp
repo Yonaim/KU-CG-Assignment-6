@@ -2,15 +2,22 @@
 #define VERTEXSHADER_HPP
 
 #include "ShaderIO.hpp"
+#include "ShaderGlobalState.hpp"
+#include "shading_utils.hpp"
 
-// only basic processing, so this is not a abstract class
 class VertexShader
 {
   public:
-	// these matricies are directly modified (so not private) 
 	glm::mat4 model;      // per object
 	glm::mat4 view;       // per scene
 	glm::mat4 projection; // per scene
+
+	const ShaderGlobalState *global_state = nullptr;
+
+	void set_global_state(const ShaderGlobalState *state)
+	{
+		global_state = state;
+	}
 
 	VertexOut vertex(const Vertex &in) const
 	{
