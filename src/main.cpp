@@ -2,20 +2,24 @@
 #include "gl_core.h"
 #include "settings.hpp"
 #include "Renderer.hpp"
-#include "FragmentShaderWhite.hpp"
+#include "VertexShader.hpp"
+#include "ShadingMode.hpp"
 
-void        init_scene(Scene &scene);
-GLFWwindow *init_glfw();
-void        renderFrameLoop(Renderer &renderer, Rasterizer &rasterizer,
-							GLFWwindow *window);
+void            init_scene(Scene &scene);
+GLFWwindow     *init_glfw();
+void            renderFrameLoop(Renderer &renderer, Rasterizer &rasterizer,
+								GLFWwindow *window);
+FragmentShader *make_fragment_shader(ShadingMode mode);
 
+// if you want change shading mode, change the value of 'mode'
 int main()
 {
-	Renderer            renderer;
-	Rasterizer          rasterizer(SCR_WIDTH, SCR_HEIGHT);
-	VertexShader        vs;
-	FragmentShaderWhite fs;
-	GLFWwindow         *window = NULL;
+	Renderer        renderer;
+	Rasterizer      rasterizer(SCR_WIDTH, SCR_HEIGHT);
+	GLFWwindow     *window       = NULL;
+	ShadingMode     shading_mode = ShadingMode::Flat; // shading mode
+	VertexShader    vs;
+	FragmentShader *fs = make_fragment_shader(shading_mode);
 
 	// set up
 	glfwSetErrorCallback(errorCallback);
@@ -25,7 +29,7 @@ int main()
 		return (1);
 	renderer.resizeOutput(SCR_WIDTH, SCR_HEIGHT);
 	rasterizer.vertex_shader   = &vs;
-	rasterizer.fragment_shader = (FragmentShader *)&fs;
+	rasterizer.fragment_shader = fs;
 
 	// loop
 	renderFrameLoop(renderer, rasterizer, window);
@@ -33,5 +37,7 @@ int main()
 	// terminate
 	glfwDestroyWindow(window);
 	glfwTerminate();
+	delete fs;
+
 	return (0);
 }

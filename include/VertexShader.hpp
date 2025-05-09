@@ -4,6 +4,7 @@
 #include "ShaderIO.hpp"
 #include "ShaderGlobalState.hpp"
 #include "shading_utils.hpp"
+#include "ShadingMode.hpp"
 
 class VertexShader
 {
@@ -28,12 +29,14 @@ class VertexShader
 		out.position        = projection * view * world_pos;
 		out.normal = glm::mat3(glm::transpose(glm::inverse(model))) * in.normal;
 
-// if shading mode is Gouarud shading, then per vertex color is needed
-#if SHADING_MODE_GOURAUD
-		out.color = blinn_phong(glm::normalize(out.normal), out.world_pos,
-								global_state->view_pos, *global_state->material,
-								*global_state->lighting);
-#endif
+		// if shading mode is Gouarud shading, then per vertex color is needed
+		if (global_state->shading_mode == ShadingMode::Gouraud)
+			out.color
+				= blinn_phong(glm::normalize(out.normal), out.world_pos,
+							  global_state->view_pos, *global_state->material,
+							  *global_state->lighting);
+		else
+			;
 		return out;
 	}
 };
