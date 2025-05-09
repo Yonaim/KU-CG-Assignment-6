@@ -12,6 +12,8 @@ class FragmentShaderFlat : public FragmentShader
 	mutable bool      dirty = true; // recompute when dirty bit = true
 
   public:
+	FragmentShaderFlat() = default;
+
 	FragmentShaderFlat(const glm::vec3 &normal, const glm::vec3 &position)
 		: flat_normal(normal), flat_position(position)
 	{
