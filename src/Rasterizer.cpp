@@ -54,6 +54,7 @@ void Rasterizer::rasterize_triangle(const VertexOut &v0, const VertexOut &v1,
 		{
 			glm::vec2 p(x + 0.5f, y + 0.5f);
 
+			// barycentric interpolation coefficients (alpha, beta, gamma)
 			float w0 = edge_test(v1.screen_pos, v2.screen_pos, p);
 			float w1 = edge_test(v2.screen_pos, v0.screen_pos, p);
 			float w2 = edge_test(v0.screen_pos, v1.screen_pos, p);
@@ -78,6 +79,9 @@ void Rasterizer::rasterize_triangle(const VertexOut &v0, const VertexOut &v1,
 									+ w2 * v2.world_pos;
 					frag.normal = glm::normalize(w0 * v0.normal + w1 * v1.normal
 												 + w2 * v2.normal);
+					if (fragment_shader->requires_vertex_color() == true)
+						frag.color
+							= w0 * v0.color + w1 * v1.color + w2 * v2.color;
 
 					glm::vec3 color = fragment_shader->fragment(frag);
 					framebuffer.color_buffer[index] = color;

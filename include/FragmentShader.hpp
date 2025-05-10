@@ -18,6 +18,10 @@ class FragmentShader
 	{
 		global_state = state;
 	}
+	virtual bool requires_vertex_color() const
+	{
+		return false;
+	}
 };
 
 #endif

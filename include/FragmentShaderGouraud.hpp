@@ -11,6 +11,10 @@ class FragmentShaderGouraud : public FragmentShader
 	{
 		return in.color;
 	}
+	virtual bool requires_vertex_color() const override
+	{
+		return true;
+	}
 };
 
 #endif
