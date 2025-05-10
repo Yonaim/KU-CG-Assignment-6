@@ -8,7 +8,7 @@ FragmentShader *make_fragment_shader(ShadingMode mode)
 	switch (mode)
 	{
 	case ShadingMode::Flat:
-		return new FragmentShaderFlat(glm::vec3(0), glm::vec3(0));
+		return new FragmentShaderFlat();
 	case ShadingMode::Gouraud:
 		return new FragmentShaderGouraud();
 	case ShadingMode::Phong:
