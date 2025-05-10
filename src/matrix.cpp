@@ -65,20 +65,11 @@ glm::mat4 scale(const glm::vec3 &scaling)
 glm::mat4 view(const glm::vec3 &u, const glm::vec3 &v,
 			   const glm::vec3 &w, const glm::vec3 &eye)
 {
-	glm::mat4 m(1.0f);
-	m[0][0] = u.x;
-	m[0][1] = u.y;
-	m[0][2] = u.z;
-	m[1][0] = v.x;
-	m[1][1] = v.y;
-	m[1][2] = v.z;
-	m[2][0] = w.x;
-	m[2][1] = w.y;
-	m[2][2] = w.z;
-	m[3][0] = eye.x;
-	m[3][1] = eye.y;
-	m[3][2] = eye.z;
-
+	glm::mat4 m;
+	m[0] = glm::vec4(u.x, u.y, u.z, 0);
+	m[1] = glm::vec4(v.x, v.y, v.z, 0);
+	m[2] = glm::vec4(w.x, w.y, w.z, 0);
+	m[3] = glm::vec4(eye.x, eye.y, eye.z, 1);
 	return glm::inverse(m);
 }
 
