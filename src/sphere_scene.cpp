@@ -43,7 +43,6 @@ void create_unit_sphere()
 			gVertexBuffer[3 * t]     = x;
 			gVertexBuffer[3 * t + 1] = y;
 			gVertexBuffer[3 * t + 2] = z;
-
 			gNormalBuffer[3 * t]     = x;
 			gNormalBuffer[3 * t + 1] = y;
 			gNormalBuffer[3 * t + 2] = z;
@@ -55,11 +54,17 @@ void create_unit_sphere()
 	gVertexBuffer[3 * t]     = 0;
 	gVertexBuffer[3 * t + 1] = 1;
 	gVertexBuffer[3 * t + 2] = 0;
+	gNormalBuffer[3 * t]     = 0;
+	gNormalBuffer[3 * t + 1] = 1;
+	gNormalBuffer[3 * t + 2] = 0;
 	t++;
 
 	gVertexBuffer[3 * t]     = 0;
 	gVertexBuffer[3 * t + 1] = -1;
 	gVertexBuffer[3 * t + 2] = 0;
+	gNormalBuffer[3 * t]     = 0;
+	gNormalBuffer[3 * t + 1] = -1;
+	gNormalBuffer[3 * t + 2] = 0;
 	t++;
 
 	t = 0;
