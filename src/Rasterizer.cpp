@@ -58,7 +58,8 @@ void Rasterizer::rasterize_triangle(const VertexOut &v0, const VertexOut &v1,
 			float w1 = edge_test(v2.screen_pos, v0.screen_pos, p);
 			float w2 = edge_test(v0.screen_pos, v1.screen_pos, p);
 
-			if (w0 >= 0 && w1 >= 0 && w2 >= 0)
+			if ((area > 0 && w0 >= 0 && w1 >= 0 && w2 >= 0)
+				|| (area < 0 && w0 <= 0 && w1 <= 0 && w2 <= 0))
 			{
 				w0 /= area;
 				w1 /= area;
