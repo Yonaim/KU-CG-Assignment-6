@@ -58,7 +58,7 @@ static void init_camera(Camera &camera)
 	camera.setEye(glm::vec3(0, 0, 0));
 	camera.setDirection(glm::vec3(1, 0, 0), glm::vec3(0, 1, 0),
 						glm::vec3(0, 0, -1));
-
+	
 	/*
 	Use a perspective projection transform with l = −0.1, r = 0.1, b = −0.1, t
 	= 0.1, n = −0.1, f = −1000.
@@ -115,7 +115,7 @@ GLFWwindow *init_glfw()
 
 	// Create window and use
 	GLFWwindow *window = glfwCreateWindow(
-		SCR_WIDTH, SCR_HEIGHT, "Rasterizer (Assignment 5)", NULL, NULL);
+		SCR_WIDTH, SCR_HEIGHT, "Rasterizer (Assignment 6)", NULL, NULL);
 
 	if (!window)
 	{
