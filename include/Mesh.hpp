@@ -20,7 +20,7 @@ class Mesh
 	void setData(float *vertices, float *normals, int numVertices, int *indices,
 				 int numIndices);
 
-	std::array<Vertex, 3> get_nth_triangle(int idx) const;
+	std::array<Vertex, 3> get_nth_triangle(int n) const;
 };
 
 #endif

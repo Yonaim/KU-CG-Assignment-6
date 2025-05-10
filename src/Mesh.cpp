@@ -19,28 +19,34 @@ void Mesh::setData(float *vertices, float *normals, int numVertices,
 	this->n_triangles  = numIndices / 3;
 }
 
-std::array<Vertex, 3> Mesh::get_nth_triangle(int idx) const
+std::array<Vertex, 3> Mesh::get_nth_triangle(int n) const
 {
 	std::array<Vertex, 3> triangle;
 
-	int i0 = indexBuffer[idx * 3 + 0];
-	int i1 = indexBuffer[idx * 3 + 1];
-	int i2 = indexBuffer[idx * 3 + 2];
+	int x_idx = indexBuffer[n * 3 + 0];
+	int y_idx = indexBuffer[n * 3 + 1];
+	int z_idx = indexBuffer[n * 3 + 2];
 
-	glm::vec3 v0(vertexBuffer[3 * i0 + 0], vertexBuffer[3 * i0 + 1],
-				 vertexBuffer[3 * i0 + 2]);
-	glm::vec3 v1(vertexBuffer[3 * i1 + 0], vertexBuffer[3 * i1 + 1],
-				 vertexBuffer[3 * i1 + 2]);
-	glm::vec3 v2(vertexBuffer[3 * i2 + 0], vertexBuffer[3 * i2 + 1],
-				 vertexBuffer[3 * i2 + 2]);
+	glm::vec3 x_v(vertexBuffer[3 * x_idx + 0], vertexBuffer[3 * x_idx + 1],
+				  vertexBuffer[3 * x_idx + 2]);
+	glm::vec3 y_v(vertexBuffer[3 * y_idx + 0], vertexBuffer[3 * y_idx + 1],
+				  vertexBuffer[3 * y_idx + 2]);
+	glm::vec3 z_v(vertexBuffer[3 * z_idx + 0], vertexBuffer[3 * z_idx + 1],
+				  vertexBuffer[3 * z_idx + 2]);
 
-	triangle[0].position = v0;
-	triangle[1].position = v1;
-	triangle[2].position = v2;
+	glm::vec3 x_n(normalBuffer[3 * x_idx + 0], normalBuffer[3 * x_idx + 1],
+				  normalBuffer[3 * x_idx + 2]);
+	glm::vec3 y_n(normalBuffer[3 * y_idx + 0], normalBuffer[3 * y_idx + 1],
+				  normalBuffer[3 * y_idx + 2]);
+	glm::vec3 z_n(normalBuffer[3 * z_idx + 0], normalBuffer[3 * z_idx + 1],
+				  normalBuffer[3 * z_idx + 2]);
 
-	// temporary
-	for (int i = 0; i < 3; ++i)
-		triangle[i].normal = glm::vec3(0.0f, 0.0f, 1.0f);
+	triangle[0].position = x_v;
+	triangle[1].position = y_v;
+	triangle[2].position = z_v;
+	triangle[0].normal   = x_n;
+	triangle[1].normal   = y_n;
+	triangle[2].normal   = z_n;
 
 	return triangle;
 }
