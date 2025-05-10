@@ -62,28 +62,24 @@ glm::mat4 scale(const glm::vec3 &scaling)
 	return m;
 }
 
-glm::mat4 view(const glm::vec3 &eye, const glm::vec3 &lookat,
-			   const glm::vec3 &world_up)
+glm::mat4 view(const glm::vec3 &u, const glm::vec3 &v,
+			   const glm::vec3 &w, const glm::vec3 &eye)
 {
-	glm::vec3 forward = glm::normalize(lookat - eye);
-	glm::vec3 right   = glm::normalize(glm::cross(world_up, forward));
-	glm::vec3 up      = glm::cross(forward, right);
+	glm::mat4 m(1.0f);
+	m[0][0] = u.x;
+	m[0][1] = u.y;
+	m[0][2] = u.z;
+	m[1][0] = v.x;
+	m[1][1] = v.y;
+	m[1][2] = v.z;
+	m[2][0] = w.x;
+	m[2][1] = w.y;
+	m[2][2] = w.z;
+	m[3][0] = eye.x;
+	m[3][1] = eye.y;
+	m[3][2] = eye.z;
 
-	glm::mat4 view = glm::mat4(1.0f);
-	view[0][0]     = right.x;
-	view[0][1]     = right.y;
-	view[0][2]     = right.z;
-	view[1][0]     = up.x;
-	view[1][1]     = up.y;
-	view[1][2]     = up.z;
-	view[2][0]     = -forward.x;
-	view[2][1]     = -forward.y;
-	view[2][2]     = -forward.z;
-	view[3][0]     = glm::dot(right, eye);
-	view[3][1]     = glm::dot(up, eye);
-	view[3][2]     = -glm::dot(forward, eye);
-
-	return view;
+	return glm::inverse(m);
 }
 
 glm::mat4 perspective(float l, float r, float b, float t, float n, float f)

@@ -43,6 +43,5 @@ glm::vec3 Camera::getForward() const
 
 glm::mat4 Camera::getViewMatrix() const
 {
-	glm::vec3 lookat = eye + forward;
-	return (matrix::view(eye, lookat, up));
+	return (matrix::view(right, up, -forward, eye));
 }
