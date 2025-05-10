@@ -29,4 +29,11 @@ All objects in the scene are represented as triangle meshes, which are transform
 
 # Result Screenshots
 
-![output](Screenshot.png)
+### Flat
+![output_flat](screenshot/output_flat.png)
+
+### Gouraud
+![output_gouraud](screenshot/output_gouraud.png)
+
+### Phong
+![output_phong](screenshot/output_phong.png)
