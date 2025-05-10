@@ -11,7 +11,7 @@ class Camera
 	glm::vec3  eye;     // position of camera
 	glm::vec3  right;   // u
 	glm::vec3  up;      // v
-	glm::vec3  forward; // w
+	glm::vec3  forward; // -w
 	
 	public:
 	ImagePlane image_plane;

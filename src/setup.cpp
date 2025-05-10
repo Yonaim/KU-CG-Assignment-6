@@ -57,7 +57,7 @@ static void init_camera(Camera &camera)
 	*/
 	camera.setEye(glm::vec3(0, 0, 0));
 	camera.setDirection(glm::vec3(1, 0, 0), glm::vec3(0, 1, 0),
-						glm::vec3(0, 0, 1));
+						glm::vec3(0, 0, -1));
 
 	/*
 	Use a perspective projection transform with l = −0.1, r = 0.1, b = −0.1, t
