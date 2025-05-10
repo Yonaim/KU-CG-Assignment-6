@@ -10,7 +10,5 @@ class FragmentShaderFlat;
 glm::vec3 blinn_phong(const glm::vec3 &normal, const glm::vec3 &frag_pos,
 					  const glm::vec3 &view_pos, const Material &material,
 					  const GlobalLighting &lighting);
-void      set_flat_info(FragmentShaderFlat *fs, const VertexOut &v0,
-						const VertexOut &v1, const VertexOut &v2);
 
 #endif

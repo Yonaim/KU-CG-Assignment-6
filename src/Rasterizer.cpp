@@ -103,7 +103,11 @@ void Rasterizer::draw_triangle(const ShaderGlobalState &global_state,
 	{
 		auto *fs_flat
 			= dynamic_cast<FragmentShaderFlat *>(this->fragment_shader);
-		set_flat_info(fs_flat, out0, out1, out2);
+		glm::vec3 normal = glm::normalize(glm::cross(
+			out1.world_pos - out0.world_pos, out2.world_pos - out0.world_pos));
+		glm::vec3 center
+			= (out0.world_pos + out1.world_pos + out2.world_pos) / 3.0f;
+		fs_flat->set_flat_info(normal, center);
 	}
 
 	rasterize_triangle(out0, out1, out2);

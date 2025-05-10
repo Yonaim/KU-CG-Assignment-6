@@ -33,14 +33,3 @@ glm::vec3 blinn_phong(const glm::vec3 &normal, const glm::vec3 &frag_pos,
 	return glm::clamp(color_gamma, 0.0f, 1.0f);
 }
 
-void set_flat_info(FragmentShaderFlat *fs, const VertexOut &v0,
-						  const VertexOut &v1, const VertexOut &v2)
-{
-	if (!fs)
-		return;
-
-	glm::vec3 normal = glm::normalize(
-		glm::cross(v1.world_pos - v0.world_pos, v2.world_pos - v0.world_pos));
-	glm::vec3 center = (v0.world_pos + v1.world_pos + v2.world_pos) / 3.0f;
-	fs->set_flat_info(normal, center);
-}
