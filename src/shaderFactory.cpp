@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "ShadingMode.hpp"
 #include "FragmentShaderFlat.hpp"
 #include "FragmentShaderGouraud.hpp"
@@ -14,6 +15,6 @@ FragmentShader *make_fragment_shader(ShadingMode mode)
 	case ShadingMode::Phong:
 		return new FragmentShaderPhong();
 	default:
-		throw std::runtime_error("Unknown shading mode.");
+		exit(1); // Unknown shading mode
 	}
 }
