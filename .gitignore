@@ -1,2 +1,14 @@
-*.o
-rasterizer.out
+bin
+.DS_Store
+*.exe
+*.pdb
+*.obj
+.vs/
+.vscode/
+*.user
+*.suo
+*.vsidx
+*.recipe
+*.log
+*.tlog
+*.idb

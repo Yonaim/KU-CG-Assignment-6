@@ -1,12 +1,6 @@
 # Overview
 
-This project is a simple rasterizer written in C++, without relying on any high-level graphics APIs.
-
-OpenGL is used solely for creating the window and displaying the final framebuffer — all rendering computations are performed on the CPU.
-
-While the project uses the GLM library for basic math operations, such as vectors and matrices, all graphics-specific transformations (e.g., projection, viewport, rotation) are implemented manually from scratch, without using GLM's built-in graphics utilities.
-
-All objects in the scene are represented as triangle meshes, which are transformed and rasterized through a custom CPU-based pipeline.
+This is a Ray Tracing project utilizing OpenGL for rendering. The project showcases ray tracing algorithms and displays the results using OpenGL’s function to output images directly to the screen.
 
 # How to Compilation & Run
 
@@ -29,11 +23,22 @@ All objects in the scene are represented as triangle meshes, which are transform
 
 # Result Screenshots
 
-### Flat
-![output_flat](screenshot/output_flat.png)
+### Q1. Phong Shading
 
-### Gouraud
-![output_gouraud](screenshot/output_gouraud.png)
+![Q1_output](screenshots/Q1_output.png)
 
-### Phong
-![output_phong](screenshot/output_phong.png)
+
+### Q2. Gamma Correction
+
+![Q2_output](screenshots/Q2_output.png)
+
+
+### Q3. Antiailasing
+
+![Q3_output](screenshots/Q3_output.png)
+
+##### Before Antiailasing:
+![Q3_before_antiailasing](screenshots/Q3_before_antiailasing.png)
+
+##### After Antiailasing:
+![Q3_after_antiailasing](screenshots/Q3_after_antiailasing.png)
