@@ -30,7 +30,7 @@ All objects in the scene are represented as triangle meshes, which are transform
 # Result Screenshots
 
 ### Flat
-![output_flat](screenshot/C)
+![output_flat](screenshot/output_flat.png)
 
 ### Gouraud
 ![output_gouraud](screenshot/output_gouraud.png)
